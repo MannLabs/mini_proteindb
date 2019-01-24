@@ -1,6 +1,6 @@
 Feature: Protein Database
 
-  Scenario: Populating the database
+  Scenario: Populating the Database
     Given I have some Fasta files
     And the Fasta files contain protein sequences
     When I build a protein database
