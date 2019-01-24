@@ -1,14 +1,12 @@
 Feature: Protein Database
 
-  Background: Creating the Database
-    Given I have a database filename
-    When I build the database
-    Then I should see a protein database file
-
-  Scenario: Populating the Database
-    Given I have some Fasta files that contain protein sequences
+  Scenario Outline: Populating the Database
+    Given I have a Fasta file named <filename> that contains protein sequences
     When I populate a protein database with the Fasta files
     Then all the sequences from the Fasta files are inside the database
+
+    Examples: Vertical
+    | filename | uni6283.fasta |
 
   Scenario: Sequence Search by ID
     Given the protein database

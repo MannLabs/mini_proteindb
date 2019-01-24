@@ -1,44 +1,37 @@
-from pytest_bdd import scenario, given, when, then
+import pytest
+from pytest_bdd import scenario, given, when, then, scenarios
 
-@scenario("protein_database.feature", "Creating the Database")
-def test_db():
-    pass
+@pytest.fixture
+def db():
+    return db
 
-@given("I have a database filename")
-def file_name():
-    raise NotImplemented
 
-@when("I build the database")
-def build_database(file_name):
-    return database
-
-@then("I should see a protein database file")
-def check_database(database):
-    raise NotImplemented
-
+######
 @scenario('protein_database.feature', 'Populating the Database')
 def test_foo():
     pass
 
-@given("I have some Fasta files that contain protein sequences")
-def fasta():
+@given("I have a Fasta file named <filename> that contains protein sequences", target_fixture=db)
+def fasta(filename):
     raise NotImplemented
 
 @when("I populate a protein database with the Fasta files")
-def build_and_populate_database(fasta):
+def build_and_populate_database(fasta, db):
     raise NotImplemented
 
 @then("all the sequences from the Fasta files are inside the database")
-def database_contains_all_sequences(database, fasta):
+def database_contains_all_sequences(db, fasta):
     raise NotImplemented
 
+
+#####
 @scenario('protein_database.feature', "Sequence Search by ID")
 def test_search_by_ID():
     pass
 
 @given("the protein database")
-def step_impl():
-    raise NotImplementedError(u'STEP: Given the protein database')
+def step_impl(db):
+    return db
 
 
 @given("and a Uniprot ID")
