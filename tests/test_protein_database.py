@@ -1,4 +1,3 @@
-import pytest
 from pytest_bdd import scenario, given, when, then, scenarios
 
 
@@ -10,9 +9,9 @@ class ProteinDB:
     def populate(self, filename):
         pass
 
-    def search_id(self, uniprot_id):
-        self.result = None
-
+    def query(self, query_string):
+        self.db.query(query_string)
+        self.result = self.db.get_result()
 
 
 
@@ -37,7 +36,7 @@ def uniprot_id(uniprot_id):
 
 @when("I search for <uniprot_id> in a database")
 def step_impl(db, uniprot_id):
-    db.search_id(uniprot_id)
+    db.query(uniprot_id)
 
 
 @then("I will see the corresponding <sequence>")
@@ -58,7 +57,7 @@ def sequence(sequence):
 
 @when("I search for the <sequence> in the database")
 def step_impl(db, sequence):
-    db.search_sequence(sequence)
+    db.query(sequence)
 
 
 @then("I will see the corresponding <uniprot_id>")
