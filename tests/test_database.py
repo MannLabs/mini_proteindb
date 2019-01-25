@@ -15,5 +15,11 @@ def test_db_contains_protein_table():
     assert len(results) == 1
     assert results[0][0] == 'proteins'
 
-# def test_
-#     c.execute(".tables")
+def test_db_table_contains_all_columns():
+    db = ProteinDB('test.db')
+    conn = db._conn
+    c = conn.cursor()
+    c.execute("PRAGMA table_info('proteins');")
+    results = c.fetchall()
+    columns = [result[1] for result in results]
+    assert 'uniprot_id' in columns and 'sequence' in columns
