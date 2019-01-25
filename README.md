@@ -3,7 +3,7 @@
 
 # ProteinDB
 
-A small demo of how to use sqlite in python and BioPy to ready fasta files and put them in databases.  
+A small demo of how to use sqlite in python and BioPy to read fasta files and put them in databases.  
 
 Provides a ProteinDB class that can be populated with fasta files and queried by uniprot id and sequence.
 
