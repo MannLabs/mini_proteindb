@@ -32,6 +32,6 @@ class ProteinDB:
                 cursor.execute(sql, (idx, uniprot_id, sequence))
 
 
-    def query(self, query_string):
+    def query(self, uniprot_id=None, sequence=None):
         self._conn.query(query_string)
         self.result = self._conn.get_result()

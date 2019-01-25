@@ -23,7 +23,7 @@ def uniprot_id(uniprot_id):
 
 @when("I search for <uniprot_id> in a database")
 def step_impl(db, uniprot_id):
-    db.query(uniprot_id)
+    db.query(uniprot_id=uniprot_id)
 
 
 @then("I will see the corresponding <sequence>")
@@ -44,7 +44,7 @@ def sequence(sequence):
 
 @when("I search for the <sequence> in the database")
 def step_impl(db, sequence):
-    db.query(sequence)
+    db.query(sequence=sequence)
 
 
 @then("I will see the corresponding <uniprot_id>")
