@@ -3,3 +3,4 @@ venv
 *.db
 .eggs
 .egg-info
+.coverage
