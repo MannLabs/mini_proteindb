@@ -1,5 +1,5 @@
 import sqlite3
-
+from Bio import SeqIO
 
 def setup_db(filename):
     conn = sqlite3.connect(filename)
@@ -22,8 +22,15 @@ class ProteinDB:
         self._conn = setup_db(filename)
         self.result = None
 
-    def populate(self, filename):
-        pass
+    def populate(self, fasta_filename):
+        cursor = self._conn.cursor()
+        with open(fasta_filename) as f:
+            for idx, record in enumerate(SeqIO.parse(f, 'fasta')):
+                uniprot_id = record.id.split('|')[1]
+                sequence = str(record.seq)
+                sql = "INSERT INTO proteins(id, uniprot_id, sequence) VALUES(?,?,?)"
+                cursor.execute(sql, (idx, uniprot_id, sequence))
+
 
     def query(self, query_string):
         self._conn.query(query_string)
