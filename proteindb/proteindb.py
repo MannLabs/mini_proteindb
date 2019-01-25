@@ -34,9 +34,17 @@ class ProteinDB:
 
     def query(self, uniprot_id=None, sequence=None):
         c = self._conn.cursor()
-        sql = 'SELECT sequence FROM proteins WHERE uniprot_id = ?'
-        c.execute(sql, [uniprot_id])
-        results = c.fetchall()
+        if uniprot_id:
+            sql = 'SELECT sequence FROM proteins WHERE uniprot_id = ?'
+            c.execute(sql, [uniprot_id])
+            results = c.fetchall()
+        elif sequence:
+            sql = 'SELECT uniprot_id FROM proteins WHERE sequence = ?'
+            c.execute(sql, [sequence])
+            results = c.fetchall()
+        else:
+            raise TypeError("need to specify field")
+
         assert len(results[0]) == 1
         assert len(results) == 1
         self.result = results[0][0]

@@ -84,3 +84,12 @@ def test_querying_uniprot_id_works(populated_db, fasta_records):
         uniprot_id = str(record.id.split('|')[1])
         populated_db.query(uniprot_id=uniprot_id)
         assert populated_db.result == sequence
+
+def test_querying_sequence_works(populated_db, fasta_records):
+    assert not populated_db.result
+
+    for record in fasta_records:
+        sequence = str(record.seq)
+        uniprot_id = str(record.id.split('|')[1])
+        populated_db.query(sequence=sequence)
+        assert populated_db.result == uniprot_id
