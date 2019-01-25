@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/nickdelgrosso/mini_proteindb.svg?branch=master)](https://travis-ci.org/nickdelgrosso/mini_proteindb)
+[![Coverage Status](https://coveralls.io/repos/github/nickdelgrosso/mini_proteindb/badge.svg?branch=master)](https://coveralls.io/github/nickdelgrosso/mini_proteindb?branch=master)
 
 # ProteinDB
 
