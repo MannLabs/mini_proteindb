@@ -33,5 +33,10 @@ class ProteinDB:
 
 
     def query(self, uniprot_id=None, sequence=None):
-        self._conn.query(query_string)
-        self.result = self._conn.get_result()
+        c = self._conn.cursor()
+        sql = 'SELECT sequence FROM proteins WHERE uniprot_id = ?'
+        c.execute(sql, [uniprot_id])
+        results = c.fetchall()
+        assert len(results[0]) == 1
+        assert len(results) == 1
+        self.result = results[0][0]
