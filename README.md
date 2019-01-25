@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nickdelgrosso/mini_proteindb.svg?branch=master)](https://travis-ci.org/nickdelgrosso/mini_proteindb)
+
 # ProteinDB
 
 A small demo of how to use sqlite in python and BioPy to ready fasta files and put them in databases.  
