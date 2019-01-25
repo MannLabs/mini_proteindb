@@ -1,12 +1,12 @@
 from pytest_bdd import scenario, given, when, then, scenarios
 from proteindb import ProteinDB
-
+from os import path
 
 @given("I have a database populated with data from Fasta file named <filename>.")
 def db(filename):
 
     db = ProteinDB()
-    db.populate(filename)
+    db.populate(path.join('data', filename))
     return db
 
 

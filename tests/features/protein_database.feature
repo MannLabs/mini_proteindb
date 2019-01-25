@@ -1,10 +1,9 @@
-@todo
 Feature: Protein Database
 
   Examples: Vertical
-    | filename   | uni6283.fasta |
-    | uniprot_id | dsafnadf1     |
-    | sequence   | ADNFADFHJ     |
+    | filename   | uniprot-proteome_UP000207613.fasta |
+    | uniprot_id | C1JCT2                             |
+    | sequence   | MSEKTQTFVQNET                      |
 
   Background:
     Given I have a database populated with data from Fasta file named <filename>.
