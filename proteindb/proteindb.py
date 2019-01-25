@@ -1,7 +1,9 @@
+import sqlite3
+
 
 class ProteinDB:
-    def __init__(self):
-        self.db = None
+    def __init__(self, filename='protein.db'):
+        self.db = sqlite3.connect(filename)
         self.result = None
 
     def populate(self, filename):
