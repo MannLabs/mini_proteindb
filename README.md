@@ -5,7 +5,9 @@ A small demo of how to use sqlite in python and BioPy to ready fasta files and p
 Provides a ProteinDB class that can be populated with fasta files and queried by uniprot id and sequence.
 
 ## Installation
-
+```
+pip install proteindb
+```
 
 ## Usage
 
@@ -22,5 +24,4 @@ from proteindb import ProteinDB
 >> db.query(sequence='SDFYUONNAJDMAMDFHAABWQ')
 >> db.result
 'DFAFDA1'
-
 ```  
