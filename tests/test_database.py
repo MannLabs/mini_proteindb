@@ -22,6 +22,13 @@ def populated_db(db):
     return db
 
 
+@pytest.fixture
+def fasta_records():
+    with open(TEST_FASTA_FILENAME) as f:
+        records = list(SeqIO.parse(f, 'fasta'))
+    return records
+
+
 def test_proteindb_contains_database(db):
     assert isinstance(db._conn, sqlite3.Connection)
 
@@ -50,9 +57,20 @@ def test_db_contains_records(db):
     results = c.execute("SELECT * from proteins").fetchall()
     assert len(results) > 0
 
-def test_db_contains_all_records(populated_db):
-    with open(TEST_FASTA_FILENAME) as f:
-        records = list(SeqIO.parse(f, 'fasta'))
+
+def test_db_contains_all_records(populated_db, fasta_records):
     c = populated_db._conn.cursor()
     results = c.execute("SELECT * from proteins").fetchall()
-    assert len(results) == len(records)
+    assert len(results) == len(fasta_records)
+
+
+def test_db_contains_correct_records(populated_db, fasta_records):
+    c = populated_db._conn.cursor()
+    results = c.execute("SELECT * from proteins").fetchall()
+    sequences = [str(record.seq) for record in fasta_records]
+    for result in results:
+        assert result[2] in sequences
+
+    uniprot_ids = [str(record.id.split('|')[1]) for record in fasta_records]
+    for result in results:
+        assert result[1] in uniprot_ids
