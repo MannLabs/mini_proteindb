@@ -16,7 +16,7 @@ pip install proteindb
 
 ```python
 from proteindb import ProteinDB
->> db = ProteinDB('human_proteome.db')
+>> db = ProteinDB('human_proteome.db')  # Creates an sqlite database with that filename.
 
 >> db.populate('uniprot1.fasta')
 
