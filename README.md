@@ -21,10 +21,8 @@ from proteindb import ProteinDB
 >> db.populate('uniprot1.fasta')
 
 >> db.query(uniprot_id='DFAFDA1')
->> db.result
 'SDFYUONNAJDMAMDFHAABWQ'
 
 >> db.query(sequence='SDFYUONNAJDMAMDFHAABWQ')
->> db.result
 'DFAFDA1'
 ```  

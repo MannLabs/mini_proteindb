@@ -77,19 +77,17 @@ def test_db_contains_correct_records(populated_db, fasta_records):
 
 
 def test_querying_uniprot_id_works(populated_db, fasta_records):
-    assert not populated_db.result
 
     for record in fasta_records:
         sequence = str(record.seq)
         uniprot_id = str(record.id.split('|')[1])
-        populated_db.query(uniprot_id=uniprot_id)
-        assert populated_db.result == sequence
+        result = populated_db.query(uniprot_id=uniprot_id)
+        assert result == sequence
 
 def test_querying_sequence_works(populated_db, fasta_records):
-    assert not populated_db.result
 
     for record in fasta_records:
         sequence = str(record.seq)
         uniprot_id = str(record.id.split('|')[1])
-        populated_db.query(sequence=sequence)
-        assert populated_db.result == uniprot_id
+        result = populated_db.query(sequence=sequence)
+        assert result == uniprot_id
