@@ -20,7 +20,6 @@ def setup_db(filename):
 class ProteinDB:
     def __init__(self, filename='protein.db'):
         self._conn = setup_db(filename)
-        self.result = None
 
     def populate(self, fasta_filename):
         cursor = self._conn.cursor()
@@ -47,4 +46,5 @@ class ProteinDB:
 
         assert len(results[0]) == 1
         assert len(results) == 1
-        self.result = results[0][0]
+        result = results[0][0]
+        return result
